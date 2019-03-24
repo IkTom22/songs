@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+// By convention, we name component variables with capital
+// {} means we want to import the specific 'named' action function to this file
+// by default, webpack will choose index.js in the directory if you don't specify
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import App from './components/App';
+import reducers from './reducers';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+ReactDOM.render(
+    <Provider store={createStore(reducers)}>
+        <App />
+    </Provider>,
+    document.querySelector('#root')
+);
